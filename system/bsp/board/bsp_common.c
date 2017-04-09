@@ -3,7 +3,7 @@
  * @Date:   2017-04-06T20:53:52+08:00
  * @Email:  byone.heng@gmail.com
  * @Last modified by:   ToSeven
- * @Last modified time: 2017-04-09T15:27:32+08:00
+ * @Last modified time: 2017-04-09T21:16:41+08:00
  * @License: MIT
  */
 
@@ -480,6 +480,37 @@ void SD_IO_WriteDummy(void)
     SD_IO_WriteByte(SD_DUMMY_BYTE);
 }
 
+/**
+ *   Initializes 12864lcd st7565ic
+ */
+void LCD12864_Init()
+{
+     GPIO_InitTypeDef GPIO_InitStruct;
+     LCD12864_COMMON_GPIO_CLK_ENABLE();
+
+     /*Configure lcd12864 CS RS WR RD  pin */
+     GPIO_InitStruct.Pin=LCD12864_CS_PIN;
+     GPIO_InitStruct.Mode=GPIO_MODE_OUTPUT_PP;
+     GPIO_InitStruct.Pull=GPIO_NOPULL;
+     GPIO_InitStruct.Speed=GPIO_SPEED_HIGH;
+     HAL_GPIO_Init(LCD12864_CS_GPIO_PORT,&GPIO_InitStruct);
+
+     GPIO_InitStruct.Pin=LCD12864_RS_PIN|LCD12864_RESET_PIN|LCD12864_RD_PIN|LCD12864_WR_PIN;
+     HAL_GPIO_Init(LCD12864_RS_GPIO_PORT,&GPIO_InitStruct);
+
+     /*Configure LCD12864  DATA OR COMMAND PIN */
+     LCD12864_PIN1_PIN2_PIN3_GPIO_CLK_ENABLE();
+     LCD12864_PIN4_PIN6_GPIO_CLK_ENABLE();
+     LCD12864_PIN5_PIN7_PIN8_GPIO_CLK_ENABLE();
+     GPIO_InitStruct.Pin=lCD12864_PIN1|lCD12864_PIN2|lCD12864_PIN3;
+     HAL_GPIO_Init(LCD12864_PIN1_PIN2_PIN3_GPIO_PORT,&GPIO_InitStruct);
+     GPIO_InitStruct.Pin=lCD12864_PIN4|lCD12864_PIN6;
+     HAL_GPIO_Init(LCD12864_PIN4_PIN6_GPIO_PORT,&GPIO_InitStruct);
+     GPIO_InitStruct.Pin=lCD12864_PIN5|lCD12864_PIN7|lCD12864_PIN8;
+     HAL_GPIO_Init(LCD12864_PIN5_PIN7_PIN8_GPIO_PORT,&GPIO_InitStruct);
+     
+
+}
 /********************************* LINK LCD ***********************************/
 /**
   * @brief  Initializes the LCD.

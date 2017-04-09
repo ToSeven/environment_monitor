@@ -3,7 +3,7 @@
  * @Date:   2017-04-06T20:53:52+08:00
  * @Email:  byone.heng@gmail.com
  * @Last modified by:   ToSeven
- * @Last modified time: 2017-04-07T19:56:49+08:00
+ * @Last modified time: 2017-04-09T21:18:28+08:00
  * @License: MIT
  */
 
@@ -192,6 +192,86 @@ void Clear_SPI_EXTI_Flag(void);
 #define SD_CS_GPIO_PORT                           GPIOB
 #define SD_CS_GPIO_CLK_ENABLE()                 __GPIOB_CLK_ENABLE()
 #define SD_CS_GPIO_CLK_DISABLE()                __GPIOB_CLK_DISABLE()
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*
+    CS RS WR RD CLK Lines contronl
+ */
+ #define LCD12864_COMMON_GPIO_CLK_ENABLE()     __GPIOB_CLK_ENABLE()
+ #define LCD12864_COMMON_GPIO_CLK_DISABLE()    __GPIOB_CLK_DISABLE()
+
+/*
+    12864LCD CS Lines management
+ */
+#define LCD12864_CS_PIN                 GPIO_PIN_12
+#define LCD12864_CS_GPIO_PORT           GPIOB
+
+/*
+    12864LCD RS Lines management-- choose data or command
+ */
+#define LCD12864_RS_PIN                  GPIO_PIN_13
+#define LCD12864_RS_GPIO_PORT            GPIOB
+
+/*
+    12864LCD RD Lines management --select read
+ */
+#define LCD12864_RD_PIN                    GPIO_PIN_14
+#define LCD12864_RD_GPIO_PORT              GPIOB
+
+/*
+    12864LCD WR Lines management -- select write
+ */
+#define LCD12864_WR_PIN                    GPIO_PIN_15
+#define LCD12864_WR_GPIO_PORT              GPIOB
+
+/*
+    12864LCD RESET Lines management
+ */
+#define LCD12864_RESET_PIN                 GPIO_PIN_6
+#define LCD12864_RESET_GPIO_PORT           GPIOC
+#define LCD12864_RESET_GPIO_CLK_ENABLE()   __GPIOC_CLK_ENABLE()
+#define LCD12864_RESET_GPIO_CLK_DISABLE()  __GPIOC_CLK_DISABLE()
+
+/*
+    12864LCD control lines management
+ */
+#define LCD12864_CS_LOW()                   HAL_GPIO_WritePin(LCD12864_CS_GPIO_PORT,LCD12864_CS_PIN,GPIO_PIN_RESET)
+#define LCD12864_CS_HIGH()                  HAL_GPIO_WritePin(LCD12864_CS_GPIO_PORT,LCD12864_CS_PIN,GPIO_PIN_SET)
+#define LCD12864_RS_LOW()                   HAL_GPIO_WritePin(LCD12864_RS_GPIO_PORT,LCD12864_RS_PIN,GPIO_PIN_RESET)
+#define LCD12864_RS_HiGH()                  HAL_GPIO_WritePin(LCD12864_RS_GPIO_PORT,LCD12864_RS_PIN,GPIO_PIN_SET)
+#define LCD12864_RD_LOW()                   HAL_GPIO_WritePin(LCD12864_RD_GPIO_PORT,LCD12864_RD_PIN,GPIO_PIN_RESET)
+#define LCD12864_RD_HIGH()                  HAL_GPIO_WritePin(LCD12864_RD_GPIO_PORT,LCD12864_RD_PIN,GPIO_PIN_SET)
+#define LCD12864_WR_LOW()                   HAL_GPIO_WritePin(LCD12864_WR_GPIO_PORT,LCD12864_WR_PIN,GPIO_PIN_RESET)
+#define LCD12864_WR_HIGH()                  HAL_GPIO_WritePin(LCD12864_WR_GPIO_PORT,LCD12864_WR_PIN,GPIO_PIN_SET)
+#define LCD12864_RESET_LOW()                HAL_GPIO_WritePin(LCD12864_WR_GPIO_PORT,LCD12864_RESET_PIN,GPIO_PIN_RESET)
+#define LCD12864_RESET_HIGH()               HAL_GPIO_WritePin(LCD12864_WR_GPIO_PORT,LCD12864_RESET_PIN,GPIO_PIN_SET)
+
+/*
+    Date or command lines Configure
+ */
+#define lCD12864_PIN1                       GPIO_PIN_0
+#define lCD12864_PIN2                       GPIO_PIN_1
+#define lCD12864_PIN3                       GPIO_PIN_8
+#define LCD12864_PIN1_PIN2_PIN3_GPIO_PORT   GPIOA
+
+#define lCD12864_PIN4                       GPIO_PIN_0  //B
+#define lCD12864_PIN5                       GPIO_PIN_13 //C
+#define lCD12864_PIN6                       GPIO_PIN_8  //B
+#define lCD12864_PIN7                       GPIO_PIN_5  //C
+#define lCD12864_PIN8                       GPIO_PIN_7  //C
+
+#define LCD12864_PIN4_PIN6_GPIO_PORT        GPIOB
+
+#define LCD12864_PIN5_PIN7_PIN8_GPIO_PORT  GPIOC
+/*
+     Those pins clock management
+ */
+#define LCD12864_PIN5_PIN7_PIN8_GPIO_CLK_ENABLE()   __GPIOC_CLK_ENABLE()
+#define LCD12864_PIN1_PIN2_PIN3_GPIO_CLK_ENABLE()   __GPIOA_CLK_ENABLE()
+#define LCD12864_PIN4_PIN6_GPIO_CLK_ENABLE()        __GPIOB_CLK_ENABLE()
+
+#define LCD12864_PIN5_PIN7_PIN8_GPIO_CLK_DISABLE()    __GPIOC_CLK_DISABLE()
+#define LCD12864_PIN4_PIN6_GPIO_CLK_DISABLE()        __GPIOB_CLK_DISABLE()
+#define LCD12864_PIN1_PIN2_PIN3_GPIO_CLK_DISABLE()    __GPIOA_CLK_DISABLE()
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   LCD Control Lines management

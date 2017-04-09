@@ -1,5 +1,6 @@
 #atom
 *.tags1
+*.o
 
 #keil project
 listings
