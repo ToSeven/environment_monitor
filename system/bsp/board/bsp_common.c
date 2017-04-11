@@ -3,7 +3,7 @@
  * @Date:   2017-04-06T20:53:52+08:00
  * @Email:  byone.heng@gmail.com
  * @Last modified by:   ToSeven
- * @Last modified time: 2017-04-09T21:16:41+08:00
+ * @Last modified time: 2017-04-11T23:32:36+08:00
  * @License: MIT
  */
 
@@ -61,6 +61,10 @@ void              LCD_IO_WriteData(uint8_t Data);
 void              LCD_IO_WriteMultipleData(uint8_t *pData, uint32_t Size);
 void              LCD_IO_WriteReg(uint8_t LCDReg);
 void              LCD_Delay(uint32_t delay);
+void              LCD12864_Init(void);
+void              WriteToLcd(uint8_t ,uint8_t);
+void              ClearScreen(void );
+void 		   				delay(unsigned short);
 
 
 void bsp_init(void)
@@ -483,11 +487,16 @@ void SD_IO_WriteDummy(void)
 /**
  *   Initializes 12864lcd st7565ic
  */
+void delay(unsigned short tick)
+{
+     for(int x=0;x<tick;x++)
+          for(int j=0;j<200;j++);
+}
 void LCD12864_Init()
 {
      GPIO_InitTypeDef GPIO_InitStruct;
      LCD12864_COMMON_GPIO_CLK_ENABLE();
-
+     LCD12864_RESET_GPIO_CLK_ENABLE();
      /*Configure lcd12864 CS RS WR RD  pin */
      GPIO_InitStruct.Pin=LCD12864_CS_PIN;
      GPIO_InitStruct.Mode=GPIO_MODE_OUTPUT_PP;
@@ -508,8 +517,69 @@ void LCD12864_Init()
      HAL_GPIO_Init(LCD12864_PIN4_PIN6_GPIO_PORT,&GPIO_InitStruct);
      GPIO_InitStruct.Pin=lCD12864_PIN5|lCD12864_PIN7|lCD12864_PIN8;
      HAL_GPIO_Init(LCD12864_PIN5_PIN7_PIN8_GPIO_PORT,&GPIO_InitStruct);
-     
 
+     delay(20);
+     LCD12864_RESET_LOW();
+     delay(20);
+     LCD12864_RESET_HIGH();
+
+     WriteToLcd(0xE2,1);
+     delay(5);
+     WriteToLcd(0x2c,1);
+     delay(5);
+     WriteToLcd(0x2e,1);
+     delay(5);
+     WriteToLcd(0x2f,1);
+     delay(5);
+     WriteToLcd(0x24,1);
+     WriteToLcd(0x81,1);
+     WriteToLcd(0x1a,1);
+     WriteToLcd(0xa2,1);
+     WriteToLcd(0xc8,1);
+     WriteToLcd(0xa0,1);
+     WriteToLcd(0x40,1);
+     ClearScreen();
+     WriteToLcd(0xaf,1);
+
+}
+
+/*
+     Write a data into lcd12864
+ */
+void WriteToLcd(uint8_t num,uint8_t flag)
+{
+     LCD12864_CS_LOW();
+     if(flag)
+          LCD12864_RS_LOW();       //select command
+     else
+          LCD12864_RS_HiGH();      //select data
+     for(int x=0;x<8;x++)
+     {
+          LCD12864_WR_LOW();
+          if(flag)
+               delay(2);
+          if(num&0x80)
+               lcd12864_PIN_HIGH(x);
+          else
+               lcd12864_PIN_LOW(x);
+          LCD12864_WR_HIGH();
+          num<<=1;
+     }
+}
+/*
+     clear lcd12864  screen
+ */
+void ClearScreen()
+{
+     for(int x=0;x<9;x++)
+     {
+          LCD12864_CS_LOW();
+          WriteToLcd(0xb0+x,1);
+          WriteToLcd(0x10,1);
+          WriteToLcd(0x00,1);
+          for(int i=0;i<132;i++)
+               WriteToLcd(0x00,0);
+     }
 }
 /********************************* LINK LCD ***********************************/
 /**
