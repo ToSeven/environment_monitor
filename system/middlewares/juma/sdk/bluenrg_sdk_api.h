@@ -9,7 +9,7 @@
 
 #ifndef _BLUENRG_SDK_API_H_
 #define _BLUENRG_SDK_API_H_
-
+//#include "stm32f4xx.h"
 /*scan interval*/
 #define SCAN_P (0x4000)
 #define SCAN_L (0x4000)

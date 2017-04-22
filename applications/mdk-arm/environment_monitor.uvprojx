@@ -133,12 +133,12 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <Capability>1</Capability>
+            <DriverSelection>4099</DriverSelection>
           </Flash1>
-          <bUseTDR>1</bUseTDR>
-          <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <bUseTDR>0</bUseTDR>
+          <Flash2>Segger\JL2CM3.dll</Flash2>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -331,9 +331,9 @@
             <vShortWch>1</vShortWch>
             <VariousControls>
               <MiscControls>--C99 --gnu  -W#177</MiscControls>
-              <Define>USE_HAL_DRIVER,STM32F401xE,USE_STM32F4XX_NUCLEO,ENABLE_SPI_FIX,BLUENRG_MS,RTC_LSE,CANNON_V2,SENSOR_FIFO,NO_PRINTF,SERVER_ROLE</Define>
+              <Define>USE_HAL_DRIVER,STM32F401xE,USE_STM32F4XX_NUCLEO,ENABLE_SPI_FIX,BLUENRG_MS,RTC_LSE,CANNON_V2,SENSOR_FIFO,SERVER_ROLE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\applications;..\..\system;..\..\system\bsp\board;..\..\system\bsp\nucleo;..\..\system\cmsis\device\st\inc;..\..\system\cmsis\include;..\..\system\drivers\st\bluenrg\bluenrg_ms;..\..\system\drivers\st\common;..\..\system\drivers\st\hts221;..\..\system\drivers\st\lcd;..\..\system\drivers\st\lps25h;..\..\system\drivers\st\lps25hb;..\..\system\drivers\st\lsm303agr;..\..\system\drivers\st\lsm6ds3;..\..\system\hal\stm32f4xx_hal_driver\inc\legacy;..\..\system\middlewares\juma\dispatcher;..\..\system\middlewares\juma\low_power;..\..\system\middlewares\juma\sdk;..\..\system\middlewares\juma\sensor;..\..\system\middlewares\st\inc;..\..\system\hal\stm32f4xx_hal_driver\inc</IncludePath>
+              <IncludePath>..\..\applications;..\..\system;..\..\system\bsp\board;..\..\system\bsp\nucleo;..\..\system\cmsis\device\st\inc;..\..\system\cmsis\include;..\..\system\drivers\st\bluenrg\bluenrg_ms;..\..\system\drivers\st\common;..\..\system\drivers\st\hts221;..\..\system\drivers\st\lcd;..\..\system\drivers\st\lps25h;..\..\system\drivers\st\lps25hb;..\..\system\drivers\st\lsm303agr;..\..\system\drivers\st\lsm6ds3;..\..\system\hal\stm32f4xx_hal_driver\inc\legacy;..\..\system\middlewares\juma\dispatcher;..\..\system\middlewares\juma\low_power;..\..\system\middlewares\juma\sdk;..\..\system\middlewares\juma\sensor;..\..\system\middlewares\st\inc;..\..\system\hal\stm32f4xx_hal_driver\inc;..\..\system\drivers\st\oled</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -510,6 +510,11 @@
               <FileName>stm32_bluenrg_ble.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\system\drivers\st\bluenrg\bluenrg_ms\stm32_bluenrg_ble.c</FilePath>
+            </File>
+            <File>
+              <FileName>oled.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\system\drivers\st\oled\oled.c</FilePath>
             </File>
           </Files>
         </Group>

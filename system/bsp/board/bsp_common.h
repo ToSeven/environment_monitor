@@ -3,7 +3,7 @@
  * @Date:   2017-04-06T20:53:52+08:00
  * @Email:  byone.heng@gmail.com
  * @Last modified by:   ToSeven
- * @Last modified time: 2017-04-12T21:55:58+08:00
+ * @Last modified time: 2017-04-20T18:17:21+08:00
  * @License: MIT
  */
 
@@ -314,7 +314,7 @@ void Clear_SPI_EXTI_Flag(void);
 #define LCD_DC_HIGH()     HAL_GPIO_WritePin(LCD_DC_GPIO_PORT, LCD_DC_PIN, GPIO_PIN_SET)
 
 /*
-  LCD Control Interface pins
+  LCD Control Interface H:\Project\environment_monitor\system\bsp\board\bsp_common.cpins
 */
 #define LCD_CS_PIN                                 GPIO_PIN_6
 #define LCD_CS_GPIO_PORT                           GPIOB
@@ -329,6 +329,11 @@ void Clear_SPI_EXTI_Flag(void);
 #define LCD_DC_GPIO_CLK_ENABLE()                 __GPIOA_CLK_ENABLE()
 #define LCD_DC_GPIO_CLK_DISABLE()                __GPIOA_CLK_DISABLE()
 
+/*
+ buzzer  control
+ */
+#define Buzzer_On()        HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET)
+#define Buzzer_Off()        HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_RESET)
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   ADC Interface pins
 */
@@ -350,6 +355,12 @@ void BSP_LED_Off(Led_TypeDef Led);
 void BSP_LED_Toggle(Led_TypeDef Led);
 void BSP_PB_Init(Button_TypeDef Button, ButtonMode_TypeDef ButtonMode);
 void BSP_SystemClock_Config(void);
+
+uint8_t Bsp_Gas_GetStatus();
+uint8_t Bsp_People_GetStatus();
+void Bsp_Facility_Off();
+void Bsp_Facility_On();
+
 
 #ifdef __cplusplus
 }

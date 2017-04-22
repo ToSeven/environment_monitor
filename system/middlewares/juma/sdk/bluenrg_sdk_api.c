@@ -22,9 +22,9 @@
 #include "hci.h"
 #include "sm.h"
 
-//#if NO_PRINTF
-//#define printf(...)
-//#endif
+#if NO_PRINTF
+#define printf(...)
+#endif
 
 #if defined (CLIENT_ROLE) || defined (CLIENT_SERVER_ROLE)
 extern uint8_t host_connect_init_flag;
