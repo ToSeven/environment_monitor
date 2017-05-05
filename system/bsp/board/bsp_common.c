@@ -870,7 +870,7 @@ void LCD_Delay(uint32_t Delay)
 void Buzzer_Control_Init()
 {
      GPIO_InitTypeDef GPIO_InitStruct;
-     __GPIOA_CLK_ENABLE();
+     __GPIOC_CLK_ENABLE();
      GPIO_InitStruct.Pin=GPIO_PIN_13 ;  //MQ-135模块 ttl输入引脚
      GPIO_InitStruct.Mode=GPIO_MODE_OUTPUT_PP;
      HAL_GPIO_Init(GPIOC,&GPIO_InitStruct);

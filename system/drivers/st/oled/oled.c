@@ -229,8 +229,6 @@ void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned 
 //初始化SSD1306
 void OLED_Init(void)
 {
-
-
  	GPIO_InitTypeDef  GPIO_InitStructure;
  	__GPIOB_CLK_ENABLE();
 	GPIO_InitStructure.Pin = GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
@@ -238,20 +236,15 @@ void OLED_Init(void)
 	GPIO_InitStructure.Speed = GPIO_SPEED_HIGH;//速度50MHz
 	HAL_GPIO_Init(GPIOB,&GPIO_InitStructure);
 	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15,GPIO_PIN_SET);
-
 	__GPIOA_CLK_ENABLE();
 	GPIO_InitStructure.Pin=GPIO_PIN_0;
 	HAL_GPIO_Init(GPIOA,&GPIO_InitStructure);
 	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,GPIO_PIN_SET);
-
-
-
   OLED_RST_Set();
 	HAL_Delay(100);
 	OLED_RST_Clr();
 	HAL_Delay(200);
 	OLED_RST_Set();
-
 	OLED_WR_Byte(0xAE,OLED_CMD);//--turn off oled panel
 	OLED_WR_Byte(0x00,OLED_CMD);//---set low column address
 	OLED_WR_Byte(0x10,OLED_CMD);//---set high column address
@@ -280,7 +273,6 @@ void OLED_Init(void)
 	OLED_WR_Byte(0xA4,OLED_CMD);// Disable Entire Display On (0xa4/0xa5)
 	OLED_WR_Byte(0xA6,OLED_CMD);// Disable Inverse Display On (0xa6/a7)
 	OLED_WR_Byte(0xAF,OLED_CMD);//--turn on oled panel
-
 	OLED_WR_Byte(0xAF,OLED_CMD); /*display ON*/
 	OLED_Clear();
 	OLED_Set_Pos(0,0);

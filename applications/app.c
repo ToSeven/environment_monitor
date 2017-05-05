@@ -96,6 +96,7 @@ static void Monitor_Gas()
           OLED_Line_clear(1);
           OLED_ShowString(0,2,"Monitor Gas:");
           OLED_ShowNum(96,2,gas_flag,1,16);
+					gas_flag=0;
      }
      run_after_delay(Monitor_People,NULL,50);
 }
@@ -382,8 +383,7 @@ void loop()
           HAL_Delay(1000);
           Buzzer_Off();
      }
-	 if(Bsp_People_GetStatus()==0)
-          HAL_Delay(100);
+		
      if(Bsp_People_GetStatus()==1)
      {
           Buzzer_On();
@@ -391,6 +391,7 @@ void loop()
           HAL_Delay(1000);
           Buzzer_Off();
 		 }
+	
      if(rawTemper<warnTemper)
      {
           Buzzer_On();
